@@ -6,13 +6,13 @@ import 'base_view_model.dart';
 
 class TaskFormViewModel extends BaseViewModel {
   
-  late final int? id;
-  late int? userId; 
+  late final String? id;
   final nameController = TextEditingController();
   final descriptionController = TextEditingController();
   late Priority? priority;
 
   TaskFormViewModel({Task? task}) {
+    id = task?.id;
     nameController.text = task?.name ?? "";
     descriptionController.text = task?.description ?? "";
     priority = task?.priority;
