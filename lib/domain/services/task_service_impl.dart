@@ -3,6 +3,7 @@ import 'package:app_bloc_example/core/models/response_model.dart';
 import 'package:app_bloc_example/data/repositories/interfaces/task_repository.dart';
 import 'package:app_bloc_example/domain/models/task.dart';
 import 'package:app_bloc_example/domain/services/interfaces/task_service.dart';
+import 'package:uuid/uuid.dart';
 
 class TaskServiceImpl implements TaskService {
 
@@ -31,7 +32,7 @@ class TaskServiceImpl implements TaskService {
     }
 
     Task task = Task(
-      id: taskFormViewModel.id,
+      id: const Uuid().v4(),
       name: taskFormViewModel.nameController.text,
       description: taskFormViewModel.descriptionController.text,
       priority: taskFormViewModel.priority!,

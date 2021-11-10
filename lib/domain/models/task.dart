@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:app_bloc_example/domain/enums/priority.dart';
 import 'package:enum_to_string/enum_to_string.dart';
-import 'package:uuid/uuid.dart';
 
 class Task {
   
@@ -16,9 +15,7 @@ class Task {
     required this.name,
     required this.description,
     required this.priority,
-  }) {
-    id ??= const Uuid().v4();
-  }
+  });
 
   Map<String, dynamic> toMap() {
     return {

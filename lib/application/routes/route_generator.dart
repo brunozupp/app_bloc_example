@@ -21,7 +21,7 @@ abstract class RouteGenerator {
       case "/dashboard":
         return _goTo(const DashboardPage());
 
-      case "/tasks":
+      case "/tasks":      
         return _goTo(const TasksListPage());
 
       case "/tasks/form":

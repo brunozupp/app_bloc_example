@@ -1,18 +1,23 @@
+import 'package:app_bloc_example/application/cubits/task_cubit/task_cubit_state.dart';
 import 'package:app_bloc_example/application/styles/colors_app.dart';
 import 'package:app_bloc_example/application/utils/modal_utils.dart';
+import 'package:app_bloc_example/application/utils/snackbar_utils.dart';
 import 'package:app_bloc_example/domain/enums/priority.dart';
 import 'package:app_bloc_example/domain/models/task.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 enum _Actions { delete, edit, cancel }
 
 class TaskItemComponent extends StatelessWidget {
 
   final Task task;
+  final BuildContext contextFromList;
 
   const TaskItemComponent({ 
     Key? key, 
-    required this.task 
+    required this.task, 
+    required this.contextFromList 
   }) : super(key: key);
 
   @override
@@ -52,6 +57,10 @@ class TaskItemComponent extends StatelessWidget {
                 final confirmation = await ModalUtils.showModalConfirmation(context);
 
                 if(confirmation != true) return;
+
+                final result = await BlocProvider.of<TaskCubitState>(context).delete(task.id);
+
+                SnackbarUtils.showSnackbarStatusResponse(context: contextFromList, statusResponse: result);
 
                 break;
               case _Actions.edit:

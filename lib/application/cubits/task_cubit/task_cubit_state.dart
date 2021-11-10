@@ -18,7 +18,7 @@ class TaskCubitState extends Cubit<TaskCubitBaseState> {
     super(TaskCubitInitState());
 
   final List<Task> _tasks = List<Task>.empty(growable: true);
-  List<Task> get tasks => _tasks;
+  //List<Task> get tasks => _tasks;
 
   bool _hasAlreadyGetTasks = false;
 
@@ -53,7 +53,7 @@ class TaskCubitState extends Cubit<TaskCubitBaseState> {
       _tasks.add(result.data!);
       emit(TasksCubitListState(tasks: _tasks));
     } else {
-      emit(TaskCubitErrorState());
+      emit(TaskCubitInitState());
     }
 
     return StatusResponse.fromResponseModel(responseModel: result);
@@ -70,7 +70,7 @@ class TaskCubitState extends Cubit<TaskCubitBaseState> {
       _tasks.add(result.data!);
       emit(TasksCubitListState(tasks: _tasks));
     } else {
-      emit(TaskCubitErrorState());
+      emit(TaskCubitInitState());
     }
 
     return StatusResponse.fromResponseModel(responseModel: result);
@@ -86,7 +86,7 @@ class TaskCubitState extends Cubit<TaskCubitBaseState> {
       _tasks.removeWhere((task) => task.id == id);
       emit(TasksCubitListState(tasks: _tasks));
     } else {
-      emit(TaskCubitErrorState());
+      emit(TaskCubitInitState());
     }
 
     return StatusResponse.fromResponseModel(responseModel: result);
